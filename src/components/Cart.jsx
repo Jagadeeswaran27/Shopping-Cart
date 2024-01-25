@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "./Context-File/AppContext";
-import purchasePng from "../../assets/purchase.png";
-import icon from "../../assets/icon.png";
+import icon from "../assets/icon.png";
+import purchasePng from "../assets/purchase.png";
 
 export default function Cart() {
   const { onCloseCart, cartItems, updateCart } = useContext(AppContext);

@@ -1,10 +1,9 @@
-import Header from "./assets/components/Header";
-import Products from "./assets/components/Products";
+import Header from "./components/Header";
+import Products from "./components/Products";
 import { useState } from "react";
-import { AppContext } from "./assets/components/Context-File/AppContext";
-import Category from "./assets/components/Categories";
-import Cart from "./assets/components/Cart";
-import Spinner from "./assets/components/LoadingSpinner";
+import { AppContext } from "./components/Context-File/AppContext";
+import Category from "./components/Categories";
+import Cart from "./components/Cart";
 
 export default function App() {
   const [category, setCategory] = useState({

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import icon from "../../assets/icon.png";
-import purchasePng from "../../assets/purchase.png";
+import icon from "../assets/icon.png";
+import purchasePng from "../assets/purchase.png";
 import { useContext } from "react";
 import { AppContext } from "./Context-File/AppContext";
 import Spinner from "./LoadingSpinner";
