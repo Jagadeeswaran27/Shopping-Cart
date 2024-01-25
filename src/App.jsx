@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AppContext } from "./assets/components/Context-File/AppContext";
 import Category from "./assets/components/Categories";
 import Cart from "./assets/components/Cart";
+import Spinner from "./assets/components/LoadingSpinner";
 
 export default function App() {
   const [category, setCategory] = useState({
