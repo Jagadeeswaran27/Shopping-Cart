@@ -44,14 +44,7 @@ header span button {
   background-color: #996619;
   color: whitesmoke;
 }
-.Products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
-}
+
 .Product-Item {
   background-color: whitesmoke;
   width: 250px;

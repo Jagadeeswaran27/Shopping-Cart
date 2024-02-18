@@ -1,14 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import icon from "../assets/icon.png";
 import purchasePng from "../assets/purchase.png";
-import { useContext } from "react";
 import { AppContext } from "./Context-File/AppContext";
 import Spinner from "./LoadingSpinner";
+import { motion } from "framer-motion";
 
 export default function Products() {
   const [items, setItems] = useState([]);
   const [fetching, isFetching] = useState(false);
   const { curr, cartItems, addToCart } = useContext(AppContext);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -26,6 +27,7 @@ export default function Products() {
     }
     fetchData();
   }, [curr]);
+
   const isItemInCart = (itemId) => {
     return cartItems.some((item) => item.id === itemId);
   };
@@ -35,31 +37,58 @@ export default function Products() {
       {fetching ? (
         <Spinner />
       ) : (
-        items.map((data, index) => (
-          <div key={index} className="Product-Item">
-            <div className="png-container">
-              <div>
-                <img className="icon" src={icon} />
-                <p>{data.rating.rate}</p>
-              </div>
-              <div>
-                <img src={purchasePng} className="icon" />
-                <p>{data.rating.count}</p>
-              </div>
-            </div>
-            <hr></hr>
-            <img src={data.image} />
-            <hr></hr>
-            <p>{data.title}</p>
-            <button
-              onClick={() => addToCart(data)}
-              className="add-Cart"
-              disabled={isItemInCart(data.id)}
+        <motion.div
+          className="product-list"
+          transition={{ staggerChildren: 0.1 }}
+          initial="hidden"
+          animate="visible"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "30px",
+          }}
+        >
+          {items.map((data, index) => (
+            <motion.div
+              key={index}
+              className="Product-Item"
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 50 },
+              }}
+              style={{ margin: "10px" }} // Adjust flex properties and margins as needed
             >
-              {isItemInCart(data.id) ? "Added to Cart" : "Add to Cart"}
-            </button>
-          </div>
-        ))
+              <div className="png-container">
+                <div>
+                  <img className="icon" src={icon} alt="icon" />
+                  <p>{data.rating.rate}</p>
+                </div>
+                <div>
+                  <img src={purchasePng} className="icon" alt="purchase icon" />
+                  <p>{data.rating.count}</p>
+                </div>
+              </div>
+              <hr />
+              <img
+                src={data.image}
+                alt="product"
+                style={{ maxWidth: "100%" }}
+              />
+              <hr />
+              <p>{data.title}</p>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 300, duration: 0.6 }}
+                onClick={() => addToCart(data)}
+                className="add-Cart"
+                disabled={isItemInCart(data.id)}
+              >
+                {isItemInCart(data.id) ? "Added to Cart" : "Add to Cart"}
+              </motion.button>
+            </motion.div>
+          ))}
+        </motion.div>
       )}
     </div>
   );

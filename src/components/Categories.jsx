@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "./Context-File/AppContext";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Category() {
   const { setCurrCategory, activeCategory } = useContext(AppContext);
@@ -40,9 +41,15 @@ export default function Category() {
   return (
     <div className="category-container">
       {categories.map(({ name, state }) => (
-        <button className={state[0]} onClick={onClick} key={name}>
+        <motion.button
+          className={state[0]}
+          onClick={onClick}
+          key={name}
+          whileHover={{ scale: 1.03 }}
+          transition={{ type: "spring", stiffness: 300, duration: 0.6 }}
+        >
           {name}
-        </button>
+        </motion.button>
       ))}
     </div>
   );

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "./Context-File/AppContext";
 import icon from "../assets/icon.png";
 import purchasePng from "../assets/purchase.png";
+import { motion } from "framer-motion";
 
 export default function Cart() {
   const { onCloseCart, cartItems, updateCart } = useContext(AppContext);
@@ -34,7 +35,17 @@ export default function Cart() {
                   <p>${item.price}</p>
                 </div>
                 <div>
-                  <button onClick={() => updateCart(item.id)}>Remove</button>
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      duration: 0.6,
+                    }}
+                    onClick={() => updateCart(item.id)}
+                  >
+                    Remove
+                  </motion.button>
                 </div>
               </div>
             </div>
@@ -47,7 +58,13 @@ export default function Cart() {
       )}
       <div className="cart-footer">
         <span>Total : ${Math.round(totalPrice)}</span>
-        <button onClick={onCloseCart}>close</button>
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          transition={{ type: "spring", stiffness: 300, duration: 0.6 }}
+          onClick={onCloseCart}
+        >
+          close
+        </motion.button>
       </div>
     </div>
   );
