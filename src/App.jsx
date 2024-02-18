@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AppContext } from "./components/Context-File/AppContext";
 import Category from "./components/Categories";
 import Cart from "./components/Cart";
+import { AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [category, setCategory] = useState({
@@ -83,7 +84,9 @@ export default function App() {
         {category.curr.length > 0 && !category.showCart ? (
           <Products />
         ) : category.showCart ? (
-          <Cart />
+          <AnimatePresence>
+            <Cart />
+          </AnimatePresence>
         ) : null}
       </div>
     </AppContext.Provider>

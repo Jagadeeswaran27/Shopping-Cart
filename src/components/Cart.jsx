@@ -11,7 +11,7 @@ export default function Cart() {
     return (curr += next.price);
   }, 0);
   return (
-    <div className="cart-container">
+    <motion.div layout exit={{ y: -30, opacity: 0 }} className="cart-container">
       {cartItems.length > 0 ? (
         cartItems.map((item, index) => (
           <div key={index} className="cart-item">
@@ -66,6 +66,6 @@ export default function Cart() {
           close
         </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 }
