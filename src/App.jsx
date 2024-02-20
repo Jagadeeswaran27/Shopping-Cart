@@ -25,10 +25,9 @@ export default function App() {
   }
 
   function addToCart(data) {
+    const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCategory((prev) => {
-      const newCartItems = Array.isArray(prev.cartItems)
-        ? [...prev.cartItems, data]
-        : [data];
+      const newCartItems = [...existingItems, data];
 
       localStorage.setItem("cartItems", JSON.stringify(newCartItems));
       return {

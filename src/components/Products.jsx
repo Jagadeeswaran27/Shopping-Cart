@@ -11,6 +11,7 @@ export default function Products() {
   const { curr, addToCart } = useContext(AppContext);
 
   const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  console.log(storedItems);
 
   useEffect(() => {
     async function fetchData() {
