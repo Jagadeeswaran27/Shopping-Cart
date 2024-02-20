@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { AppContext } from "./Context-File/AppContext";
 import { motion } from "framer-motion";
 export default function Header() {
-  const { onCartClick, cartItems } = useContext(AppContext);
-  const items = cartItems.length;
+  const { onCartClick } = useContext(AppContext);
+  const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const items = storedItems.length;
   return (
     <header>
       <p>Shopping Cart App</p>

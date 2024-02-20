@@ -30,6 +30,7 @@ export default function App() {
         ? [...prev.cartItems, data]
         : [data];
 
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
       return {
         ...prev,
         cartItems: newCartItems,
@@ -57,9 +58,13 @@ export default function App() {
 
   function updateCart(id) {
     setCategory((prev) => {
+      const storedCartItems =
+        JSON.parse(localStorage.getItem("cartItems")) || [];
+      const updatedCartItems = storedCartItems.filter((item) => item.id !== id);
+      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
       return {
         ...prev,
-        cartItems: prev.cartItems.filter((item) => item.id !== id),
+        cartItems: updatedCartItems,
       };
     });
   }

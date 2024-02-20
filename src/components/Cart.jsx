@@ -5,15 +5,16 @@ import purchasePng from "../assets/purchase.png";
 import { motion } from "framer-motion";
 
 export default function Cart() {
-  const { onCloseCart, cartItems, updateCart } = useContext(AppContext);
+  const { onCloseCart, updateCart } = useContext(AppContext);
 
-  const totalPrice = cartItems.reduce((curr, next) => {
+  const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const totalPrice = storedItems.reduce((curr, next) => {
     return (curr += next.price);
   }, 0);
   return (
     <motion.div layout exit={{ y: -30, opacity: 0 }} className="cart-container">
-      {cartItems.length > 0 ? (
-        cartItems.map((item, index) => (
+      {storedItems.length > 0 ? (
+        storedItems.map((item, index) => (
           <div key={index} className="cart-item">
             <div className="img-container">
               <img src={item.image} />

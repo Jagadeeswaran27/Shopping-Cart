@@ -8,7 +8,9 @@ import { motion } from "framer-motion";
 export default function Products() {
   const [items, setItems] = useState([]);
   const [fetching, isFetching] = useState(false);
-  const { curr, cartItems, addToCart } = useContext(AppContext);
+  const { curr, addToCart } = useContext(AppContext);
+
+  const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +31,7 @@ export default function Products() {
   }, [curr]);
 
   const isItemInCart = (itemId) => {
-    return cartItems.some((item) => item.id === itemId);
+    return storedItems.some((item) => item.id === itemId);
   };
 
   return (
